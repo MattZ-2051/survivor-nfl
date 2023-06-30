@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/components/Button/Button.svelte';
 	import Input from '$lib/components/Input/Input.svelte';
+  import Toast from '$lib/components/Toast/Toast.svelte';
 	import { loginFx } from '$store/user';
 	import { routes } from '../routes';
 
@@ -11,7 +12,6 @@
 		loginFx({ username, password });
 	};
 
-	console.log('users', username, password);
 </script>
 
 <div class="w-full h-screen flex items-center justify-center">
