@@ -13,7 +13,6 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   login(@Request() req): Promise<Tokens> {
-    console.log('here', req);
     return this.authService.login(req.user);
   }
 
