@@ -1,6 +1,7 @@
-import type { AuthTokens } from "$types/api";
+import type { AuthTokens } from '$types/api';
 
 export type User = {
-  username: string;
-  authTokens?: AuthTokens
+	id: string;
+	username: string;
+	authTokens?: AuthTokens;
 };

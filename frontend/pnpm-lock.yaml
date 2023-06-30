@@ -4,6 +4,9 @@ dependencies:
   axios:
     specifier: ^1.4.0
     version: 1.4.0
+  clsx:
+    specifier: ^1.2.1
+    version: 1.2.1
   effector:
     specifier: ^22.8.6
     version: 22.8.6
@@ -11,7 +14,7 @@ dependencies:
     specifier: ^3.1.2
     version: 3.1.2
   tw-elements:
-    specifier: ^1.0.0-beta1
+    specifier: 1.0.0-beta1
     version: 1.0.0-beta1(postcss@8.4.21)
   vite-tsconfig-paths:
     specifier: ^4.2.0
@@ -901,6 +904,11 @@ packages:
       slice-ansi: 5.0.0
       string-width: 5.1.2
     dev: true
+
+  /clsx@1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
+    dev: false
 
   /color-convert@1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
