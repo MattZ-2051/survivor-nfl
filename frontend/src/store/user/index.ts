@@ -2,8 +2,9 @@ import { login, signup } from '$api/auth';
 import { createEffect, createEvent, createStore } from 'effector';
 import { decodeJwtToken, handleUserTokenData } from '$utils';
 import type { User } from '$types/models';
+import { goto } from '$app/navigation';
 
-const updateUser = createEvent<User>();
+export const updateUser = createEvent<User>();
 export const loginFx = createEffect(login);
 export const signUpFx = createEffect(signup);
 
@@ -15,12 +16,11 @@ signUpFx.failData.watch((error) => {
 	console.log('error', error);
 });
 
-loginFx.doneData.watch((result) => {
-	console.log('res', result);
-	handleUserTokenData(result.accessToken);
-	const jwtData = decodeJwtToken(result.accessToken);
+loginFx.doneData.watch(async (result) => {
+	handleUserTokenData(result);
+	const jwtData = decodeJwtToken(result.access);
 	updateUser({ id: jwtData.sub, username: jwtData.username });
-	console.log('here', jwtData);
+	await goto('/');
 	// toast.success('Login Success');
 });
 
@@ -29,6 +29,5 @@ loginFx.failData.watch((error) => {
 });
 
 export const $user = createStore<User | null>(null).on(updateUser, (prevState, payload) => {
-	console.log('payload', payload);
 	return payload;
 });

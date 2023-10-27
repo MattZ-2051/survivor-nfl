@@ -1,4 +1,4 @@
-import type { StorageTokenData } from '$types/api';
+import type { AuthTokens, StorageTokenData } from '$types/api';
 import jwt_decode from 'jwt-decode';
 
 export const decodeJwtToken = (token: string): Record<string, string> => {
@@ -6,6 +6,7 @@ export const decodeJwtToken = (token: string): Record<string, string> => {
 };
 
 export const checkStorage = (): StorageTokenData | null => {
+	if (!localStorage) return null;
 	const tokenExist = !!localStorage.getItem('authTokens');
 	if (tokenExist) {
 		const authTokens = JSON.parse(localStorage.getItem('authTokens') as string);
@@ -16,8 +17,11 @@ export const checkStorage = (): StorageTokenData | null => {
 	}
 };
 
-export const handleUserTokenData = (token: string) => {
-	const tokenData = decodeJwtToken(token);
-	localStorage.setItem('authTokens', JSON.stringify({ accessToken: token }));
+export const handleUserTokenData = (token: AuthTokens) => {
+	const tokenData = decodeJwtToken(token.access);
+	localStorage.setItem(
+		'authTokens',
+		JSON.stringify({ access: token.access, refresh: token.refresh })
+	);
 	return tokenData;
 };

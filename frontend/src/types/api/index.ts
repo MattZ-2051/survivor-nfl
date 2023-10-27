@@ -8,6 +8,6 @@ export type StorageTokenData = {
 };
 
 export type AuthTokens = {
-	accessToken: string;
-	refreshToken: string;
+	access: string;
+	refresh: string;
 };
