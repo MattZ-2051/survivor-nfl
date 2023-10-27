@@ -4,6 +4,8 @@
 </script>
 
 <div class="">
-  <Header />
-	<slot />
+	<Header />
+	<div class="p-12">
+		<slot />
+	</div>
 </div>
