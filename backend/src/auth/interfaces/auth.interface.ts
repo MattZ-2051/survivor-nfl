@@ -5,8 +5,8 @@ export interface User {
 }
 
 export type Tokens = {
-  accessToken: string;
-  refreshToken: string;
+  access: string;
+  refresh: string;
 };
 
 export type JwtPayload = {

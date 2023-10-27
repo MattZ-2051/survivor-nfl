@@ -10,6 +10,8 @@ import { JwtStrategy } from './auth/strategies/auth.at-jwt.strategy';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { PassportModule } from '@nestjs/passport';
+import { GameModule } from './game/game.module';
+import { TeamModule } from './team/team.module';
 
 @Module({
   imports: [
@@ -31,6 +33,8 @@ import { PassportModule } from '@nestjs/passport';
     UserModule,
     AuthModule,
     PassportModule,
+    GameModule,
+    TeamModule,
   ],
   providers: [AuthService, JwtService, AppService, JwtStrategy],
   controllers: [AppController],
