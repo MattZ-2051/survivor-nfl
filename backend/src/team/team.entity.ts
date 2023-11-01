@@ -1,13 +1,8 @@
-import {
-  Column,
-  Entity,
-  PrimaryGeneratedColumn,
-  ManyToMany,
-  JoinTable,
-} from 'typeorm';
+import { Pick } from 'src/pick/pick.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Game {
+export class Team {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -19,4 +14,7 @@ export class Game {
 
   @Column({ nullable: true, type: 'jsonb' })
   extraData: JSON;
+
+  @OneToMany(() => Pick, (pick) => pick.team)
+  picks: Pick[];
 }

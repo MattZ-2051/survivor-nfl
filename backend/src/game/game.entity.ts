@@ -1,11 +1,5 @@
-import { User } from 'src/user/user.entity';
-import {
-  Column,
-  Entity,
-  PrimaryGeneratedColumn,
-  ManyToMany,
-  JoinTable,
-} from 'typeorm';
+import { Player } from 'src/player/player.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Game {
@@ -24,7 +18,10 @@ export class Game {
   @Column({ nullable: false, type: 'varchar' })
   status: string;
 
-  @ManyToMany(() => User)
-  @JoinTable()
-  users: User[];
+  // @ManyToMany(() => User)
+  // @JoinTable()
+  // users: User[];
+
+  @OneToMany(() => Player, (player) => player.game)
+  players: Player[];
 }
