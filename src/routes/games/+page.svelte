@@ -3,6 +3,6 @@
 </script>
 
 <div>
-	<h1 class="text-5xl font-medium">Games</h1>
+	<h1 class="text-5xl font-medium mb-12">Games</h1>
 	<Tabs />
 </div>

@@ -4,6 +4,6 @@
 </script>
 
 <Navbar />
-<div class="p-12">
+<div class="p-12 max-w-3xl">
 	<slot />
 </div>

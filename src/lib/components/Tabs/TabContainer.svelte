@@ -16,6 +16,7 @@
 	export let contentClassName: string | undefined = undefined;
 
 	let active: Tab = propTabs[0];
+
 	let tabs: Tab[] = propTabs;
 
 	const moveSelectedTabToTop = (idx: number) => {
@@ -31,7 +32,7 @@
 
 <div
 	class={cn(
-		'no-visible-scrollbar relative flex w-full max-w-full flex-row items-center justify-start overflow-auto [perspective:1000px] sm:overflow-visible',
+		'no-visible-scrollbar  relative flex w-full max-w-full flex-row items-center justify-start overflow-auto [perspective:1000px] sm:overflow-visible',
 		containerClassName
 	)}
 >
@@ -53,15 +54,12 @@
 				>
 					<div
 						use:motion
-						class={cn(
-							'absolute inset-0 rounded-full bg-gray-200 dark:bg-zinc-800 ',
-							activeTabClassName
-						)}
+						class={cn('absolute inset-0 rounded-full bg-third-color', activeTabClassName)}
 					/>
 				</Motion>
 			{/if}
 
-			<span class="relative block text-black dark:text-white">
+			<span class="relative block text-fifth-color">
 				{tab.title}
 			</span>
 		</button>

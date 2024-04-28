@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from '$utils/cn.ts';
+	import { cn } from '$utils/cn';
 	import { Motion } from 'svelte-motion';
 
 	type Tab = {
@@ -31,7 +31,7 @@
 				style={`scale: ${1 - idx * 0.1}; top: ${hovering ? `${idx * -60}px` : 0}; z-index: ${-idx}; opacity: ${idx < 3 ? 1 - idx * 0.1 : 0};`}
 				class={cn('absolute left-0 top-0 h-full w-full overflow-hidden', className)}
 			>
-				{@html tab.content}
+				<svelte:component this={tab.content} />
 			</div>
 		</Motion>
 	{/each}

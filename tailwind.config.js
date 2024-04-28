@@ -7,10 +7,10 @@ export default {
 	theme: {
 		extend: {
 		colors: {
-  		"first-color": "#050c18",
-  		"second-color": "#294E90",
-  		"third-color": "#3C91ED",
-  		"fourth-color": "#7EBDE9",
+  		"first-color": "#27323a",
+  		"second-color": "#435055",
+  		"third-color": "#29a19c",
+  		"fourth-color": "#a3f7bf",
   		"fifth-color": "#F3F3F3"
 		  }
 		}
