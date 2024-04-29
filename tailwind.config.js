@@ -6,13 +6,16 @@ export default {
 	darkMode: 'class',
 	theme: {
 		extend: {
-		colors: {
-  		"first-color": "#27323a",
-  		"second-color": "#435055",
-  		"third-color": "#29a19c",
-  		"fourth-color": "#a3f7bf",
-  		"fifth-color": "#F3F3F3"
-		  }
+  		boxShadow: {
+  					input: `0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28,33,0.08)`
+  		},
+  		colors: {
+    		"first-color": "#000000",
+    		"second-color": "#435055",
+    		"third-color": "#29a19c",
+    		"fourth-color": "#a3f7bf",
+    		"fifth-color": "#F3F3F3"
+  		  }
 		}
 	},
 	plugins: [addVariablesForColors]

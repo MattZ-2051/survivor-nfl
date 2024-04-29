@@ -27,7 +27,7 @@
 </script>
 
 <div
-	class="relative mx-auto mb-24 flex h-[20rem] w-[80vw] max-w-5xl flex-col items-start justify-start [perspective:1000px] md:h-[40rem] lg:w-[60vw]"
+	class="relative flex w-full flex-col items-start justify-start [perspective:1000px] md:h-[50vh]"
 >
 	<TabContainer
 		propTabs={tabs}

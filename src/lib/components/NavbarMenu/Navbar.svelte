@@ -5,18 +5,12 @@
 </script>
 
 <div class="relative flex w-full items-center">
-	<div class={'w-[600px]  mt-4 mx-auto max-w-2xl'}>
+	<div class={'mt-4 mx-auto w-full max-w-7xl'}>
 		<NavbarMenu>
-			<MenuItem {active} item="Services">
-				<div class="flex flex-col space-y-4 text-sm">
-					<HoveredLink href="#">Web Development</HoveredLink>
-					<HoveredLink href="#">Interface Design</HoveredLink>
-					<HoveredLink href="#">Search Engine Optimization</HoveredLink>
-					<HoveredLink href="#">Branding</HoveredLink>
-				</div>
-			</MenuItem>
+			<a href="/" class="navbarLink">Home</a>
+			<a href="/games" class="navbarLink">Games</a>
 			<MenuItem {active} item="Products">
-				<div class="  grid grid-cols-2 gap-10 p-4 text-sm">
+				<div class="grid grid-cols-2 gap-10 p-4 text-sm">
 					<ProductItem
 						title="Algochurn"
 						href="#"
@@ -43,14 +37,18 @@
 					/>
 				</div>
 			</MenuItem>
-			<MenuItem {active} item="Pricing">
+			<MenuItem {active} item="My Account">
 				<div class="flex flex-col space-y-4 text-sm">
-					<HoveredLink href="#">Hobby</HoveredLink>
-					<HoveredLink href="#">Individual</HoveredLink>
-					<HoveredLink href="#">Team</HoveredLink>
-					<HoveredLink href="#">Enterprise</HoveredLink>
+					<HoveredLink href="/myaccount">Settings</HoveredLink>
+					<HoveredLink href="#">Logout</HoveredLink>
 				</div>
 			</MenuItem>
 		</NavbarMenu>
 	</div>
 </div>
+
+<style lang="postcss">
+	.navbarLink {
+		@apply hover:scale-110 hover:cursor-pointer;
+	}
+</style>

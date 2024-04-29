@@ -32,7 +32,7 @@
 
 <div
 	class={cn(
-		'no-visible-scrollbar  relative flex w-full max-w-full flex-row items-center justify-start overflow-auto [perspective:1000px] sm:overflow-visible',
+		'no-visible-scrollbar relative flex w-full max-w-full flex-row items-center justify-start overflow-auto [perspective:1000px] sm:overflow-visible',
 		containerClassName
 	)}
 >

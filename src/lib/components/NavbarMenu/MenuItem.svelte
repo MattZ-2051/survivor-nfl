@@ -16,7 +16,10 @@
 
 <div on:mouseenter={() => (active = item)} on:mouseleave={() => (active = null)} class="relative">
 	<Motion let:motion transition={{ duration: 0.3 }}>
-		<p use:motion class="cursor-pointer text-fifth-color hover:opacity-[0.9]">
+		<p
+			use:motion
+			class="cursor-pointer text-fifth-color hover:opacity-[0.9] hover:cursor-pointer hover:scale-110"
+		>
 			{item}
 		</p>
 	</Motion>
