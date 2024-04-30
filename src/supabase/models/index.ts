@@ -1,5 +1,5 @@
 import type { Database } from '../schema';
 
-export type User = Database['public']['Tables']['User']['Row'];
-export type Game = Database['public']['Tables']['Game'];
-export type Player = Database['public']['Tables']['Player'];
+export type Profile = Database['public']['Tables']['Profile']['Row'];
+export type Game = Database['public']['Tables']['Game']['Row'];
+export type Player = Database['public']['Tables']['Player']['Row'];

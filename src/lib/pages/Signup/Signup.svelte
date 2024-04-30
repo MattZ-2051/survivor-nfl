@@ -3,26 +3,35 @@
 	import Input from '$lib/components/Input/Input.svelte';
 	import InputLabel from '$lib/components/Input/InputLabel.svelte';
 	import Button from '$lib/components/Button/Button.svelte';
-	import { createUser } from '$supabase/auth';
+	import { createUser } from '$supabase/api/auth';
+	import { goto } from '$app/navigation';
 
 	let username: string = '';
 	let password: string = '';
+	let email: string = '';
 	let confirmPassword: string = '';
 
 	const handleSubmit = async (e: SubmitEvent) => {
 		e.preventDefault();
 		console.log(username, password, confirmPassword);
-		if (username.length > 0 && password.length > 0 && password === confirmPassword) {
-			await createUser({ username, password });
+		if (
+			email.length > 0 &&
+			username.length > 0 &&
+			password.length > 0 &&
+			password === confirmPassword
+		) {
+			await createUser({ email, username, password });
+			await goto('/');
+			return;
 		} else {
-			console.log('error');
+			return;
 		}
 	};
 </script>
 
-<h2 class="text-3xl text-center font-bold">Signup</h2>
+<h2 class="text-3xl font-bold text-center">Signup</h2>
 <form class="my-8" on:submit={handleSubmit}>
-	<!-- <div class="mb-4 flex flex-col space-y-2 md:flex-row md:space-x-2 md:space-y-0">
+	<!-- <div class="flex flex-col mb-4 space-y-2 md:flex-row md:space-x-2 md:space-y-0">
 		<div class={'flex w-full flex-col space-y-2'}>
 			<InputLabel htmlFor="firstname">First name</InputLabel>
 			<Input id="firstname" placeholder="Tyler" type="text" />
@@ -32,6 +41,10 @@
 			<Input id="lastname" placeholder="Durden" type="text" />
 		</div>
 	</div> -->
+	<div class={'mb-4 flex w-full flex-col space-y-2'}>
+		<InputLabel htmlFor="email">Email</InputLabel>
+		<Input bind:value={email} id="email" placeholder="email" type="text" />
+	</div>
 	<div class={'mb-4 flex w-full flex-col space-y-2'}>
 		<InputLabel htmlFor="email">Username</InputLabel>
 		<Input bind:value={username} id="username" placeholder="username" type="text" />

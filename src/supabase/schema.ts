@@ -61,24 +61,21 @@ export type Database = {
       Player: {
         Row: {
           created_at: string
-          game_id: number | null
+          game_id: number
           id: number
-          owner_id: number
-          user_id: number | null
+          profile_id: number
         }
         Insert: {
           created_at?: string
-          game_id?: number | null
+          game_id: number
           id?: number
-          owner_id: number
-          user_id?: number | null
+          profile_id: number
         }
         Update: {
           created_at?: string
-          game_id?: number | null
+          game_id?: number
           id?: number
-          owner_id?: number
-          user_id?: number | null
+          profile_id?: number
         }
         Relationships: [
           {
@@ -88,35 +85,36 @@ export type Database = {
             referencedRelation: "Game"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "players_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "User"
-            referencedColumns: ["id"]
-          },
         ]
       }
-      User: {
+      Profile: {
         Row: {
           created_at: string
           id: number
-          password: string
+          user_id: string
           username: string
         }
         Insert: {
           created_at?: string
           id?: number
-          password?: string
-          username?: string
+          user_id: string
+          username: string
         }
         Update: {
           created_at?: string
           id?: number
-          password?: string
+          user_id?: string
           username?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "Profile_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {

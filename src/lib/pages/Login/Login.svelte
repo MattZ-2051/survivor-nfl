@@ -1,24 +1,34 @@
 <script lang="ts">
 	import { cn } from '$utils/cn';
 	import Input from '$lib/components/Input/Input.svelte';
+	import { goto } from '$app/navigation';
 	import InputLabel from '$lib/components/Input/InputLabel.svelte';
 	import Button from '$lib/components/Button/Button.svelte';
+	import { loginUser } from '$supabase/auth';
 
-	const handleSubmit = (e: SubmitEvent) => {
-		e.preventDefault();
-		console.log('Form submitted');
+	let email: string = '';
+	let password: string = '';
+
+	const handleLogin = async () => {
+		if (!email.length && !password.length) return;
+		try {
+			await loginUser({ email, password });
+			await goto('/home');
+		} catch {
+			return;
+		}
 	};
 </script>
 
-<h2 class="text-3xl text-center font-bold">Login</h2>
-<form class="my-8" on:submit={handleSubmit}>
+<h2 class="text-3xl font-bold text-center">Login</h2>
+<form class="my-8" on:submit={handleLogin}>
 	<div class={'mb-4 flex w-full flex-col space-y-2'}>
-		<InputLabel htmlFor="email">Username</InputLabel>
-		<Input id="username" placeholder="username" type="text" />
+		<InputLabel htmlFor="email">Email</InputLabel>
+		<Input id="email" placeholder="email" type="text" bind:value={email} />
 	</div>
 	<div class={cn('mb-4 flex w-full flex-col space-y-2')}>
 		<InputLabel htmlFor="password">Password</InputLabel>
-		<Input id="password" placeholder="••••••••" type="password" />
+		<Input id="password" placeholder="••••••••" type="password" bind:value={password} />
 	</div>
 
 	<div

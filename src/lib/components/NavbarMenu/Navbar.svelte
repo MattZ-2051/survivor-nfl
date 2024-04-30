@@ -1,13 +1,22 @@
 <script lang="ts">
 	import { NavbarMenu, HoveredLink, MenuItem, ProductItem } from '.';
+	import { logoutUser } from '$supabase/api/auth';
+	import { goto } from '$app/navigation';
 
 	let active: string | null = null;
+
+	const handleUserLogout = async () => {
+		try {
+			await logoutUser();
+			await goto('/login');
+		} catch {}
+	};
 </script>
 
-<div class="relative flex w-full items-center">
+<div class="relative flex items-center w-full">
 	<div class={'mt-4 mx-auto w-full max-w-7xl'}>
 		<NavbarMenu>
-			<a href="/" class="navbarLink">Home</a>
+			<a href="/home" class="navbarLink">Home</a>
 			<a href="/games" class="navbarLink">Games</a>
 			<MenuItem {active} item="Products">
 				<div class="grid grid-cols-2 gap-10 p-4 text-sm">
@@ -40,7 +49,12 @@
 			<MenuItem {active} item="My Account">
 				<div class="flex flex-col space-y-4 text-sm">
 					<HoveredLink href="/myaccount">Settings</HoveredLink>
-					<HoveredLink href="#">Logout</HoveredLink>
+					<p
+						class="text-fifth-color hover:cursor-pointer hover:scale-110"
+						on:click={handleUserLogout}
+					>
+						Logout
+					</p>
 				</div>
 			</MenuItem>
 		</NavbarMenu>
