@@ -1,12 +1,8 @@
-<form method="POST" action="?/login">
-	<label>
-		Email
-		<input name="email" type="email" />
-	</label>
-	<label>
-		Password
-		<input name="password" type="password" />
-	</label>
-	<button>Login</button>
-	<button formaction="?/signup">Sign up</button>
-</form>
+<script lang="ts">
+	import LoginForm from '$lib/components/pages/login/components/loginform.svelte';
+	import type { PageProps } from './$types';
+
+	let { data }: PageProps = $props();
+</script>
+
+<LoginForm {data} />

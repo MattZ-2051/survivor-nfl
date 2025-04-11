@@ -1,32 +1,36 @@
-import { redirect } from '@sveltejs/kit';
+import { authFormSchema } from '$lib/form-schemas';
+import { error, fail, redirect } from '@sveltejs/kit';
+import { superValidate } from 'sveltekit-superforms';
+import { zod } from 'sveltekit-superforms/adapters';
+import type { Actions, PageServerLoad } from './$types';
 
-import type { Actions } from './$types';
+export const load: PageServerLoad = async () => {
+	return {
+		form: await superValidate(zod(authFormSchema))
+	};
+};
 
 export const actions: Actions = {
-	signup: async ({ request, locals: { supabase } }) => {
-		const formData = await request.formData();
-		const email = formData.get('email') as string;
-		const password = formData.get('password') as string;
+	default: async (event) => {
+		const {
+			locals: { supabase }
+		} = event;
 
-		const { error } = await supabase.auth.signUp({ email, password });
-		if (error) {
-			console.error(error);
-			redirect(303, '/auth/error');
-		} else {
-			redirect(303, '/');
+		const form = await superValidate(event, zod(authFormSchema));
+
+		if (!form.valid) {
+			return fail(400, {
+				form
+			});
 		}
-	},
-	login: async ({ request, locals: { supabase } }) => {
-		const formData = await request.formData();
-		const email = formData.get('email') as string;
-		const password = formData.get('password') as string;
 
-		const { error } = await supabase.auth.signInWithPassword({ email, password });
-		if (error) {
-			console.error(error);
-			redirect(303, '/auth/error');
+		const { email, password } = form.data;
+		const { error: supabaseError } = await supabase.auth.signInWithPassword({ email, password });
+
+		if (supabaseError) {
+			error(400, supabaseError.message);
 		} else {
-			redirect(303, '/private');
+			redirect(303, '/home');
 		}
 	}
 };
